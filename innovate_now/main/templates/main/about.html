@@ -1,0 +1,10 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<div class="container mt-5 text-center">
+    <h1 class="mb-4">Quiénes Somos</h1>
+    {% for info in about_info %}
+        <h2>{{ info.title }}</h2>
+        <p class="lead">{{ info.description }}</p>
+    {% endfor %}
+</div>
+{% endblock %}

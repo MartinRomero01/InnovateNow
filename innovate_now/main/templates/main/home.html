@@ -1,0 +1,35 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<div class="container mt-5 text-center">
+    <h1 class="mb-4">Bienvenido a InnovateNow</h1>
+    <p class="lead">InnovateNow es una aceleradora de start-ups dedicada a ayudar a emprendedores innovadores a crecer sus negocios.</p>
+    
+    <div id="serviceCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+        <div class="carousel-inner">
+            {% for service in services %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    {% if service.image %}
+                        <img src="{{ service.image.url }}" class="d-block w-100" alt="{{ service.title }}" style="max-height: 400px; object-fit: cover;">
+                    {% endif %}
+                    <div class="carousel-caption">
+                        <h3>{{ service.title }}</h3>
+                        <p>{{ service.description }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#serviceCarousel" data-bs-slide="prev" style="background: transparent; border: none;">
+            <i class="fas fa-chevron-left carousel-control-prev-icon" aria-hidden="true"></i>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#serviceCarousel" data-bs-slide="next" style="background: transparent; border: none;">
+            <i class="fas fa-chevron-right carousel-control-next-icon" aria-hidden="true"></i>
+            <span class="visually-hidden">Siguiente</span>
+        </button>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="{% url 'service_list' %}" class="btn btn-primary btn-lg">Ver Servicios</a>
+    </div>
+</div>
+{% endblock %}

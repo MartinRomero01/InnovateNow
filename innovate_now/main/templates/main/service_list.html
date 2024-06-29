@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<div class="container mt-5 text-center">
+    <h1 class="mb-4">Servicios</h1>
+    <a href="{% url 'service_create' %}" class="btn btn-primary mb-4">Agregar Un Nuevo Servicio</a>
+    <ul class="list-group">
+        {% for service in services %}
+            <li class="list-group-item">
+                <h2>{{ service.title }}</h2>
+                <p>{{ service.description }}</p>
+                {% if service.image %}
+                    <img src="{{ service.image.url }}" alt="{{ service.title }}" class="img-fluid" style="max-width: 200px;"/>
+                {% endif %}
+                <div class="mt-2">
+                    <a href="{% url 'service_update' service.pk %}" class="btn btn-secondary btn-sm">Editar</a>
+                    <a href="{% url 'service_delete' service.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'main/base.html' %}
+{% block content %}
+    <h1>Services</h1>
+    <a href="{% url 'service_create' %}">Agrega Un Nuevo Servico</a>
+    <ul>
+        {% for service in services %}
+            <li>
+                <h2>{{ service.title }}</h2>
+                <p>{{ service.description }}</p>
+                {% if service.image %}
+                    <img src="{{ service.image.url }}" alt="{{ service.title }}" style="max-width: 200px;"/>
+                {% endif %}
+                <a href="{% url 'service_update' service.pk %}">Editar</a>
+                <a href="{% url 'service_delete' service.pk %}">Eliminar</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+
+
+    <h1>{% if form.instance.pk %}Edit{% else %}Create{% endif %} Servicios</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar</button>
+    </form>
+
+
+
+
+    <h1>Delete Service</h1>
+    <p>Are you sure you want to delete "{{ service.title }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, delete</button>
+        <a href="{% url 'service_list' %}">Cancel</a>
+    </form>
+{% endblock %}

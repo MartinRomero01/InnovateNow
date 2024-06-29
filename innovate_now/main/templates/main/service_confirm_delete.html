@@ -1,0 +1,12 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<div class="container mt-5 text-center">
+    <h1 class="mb-4">Borrar Servicio</h1>
+    <p>¿Estás seguro que quieres eliminar "{{ service.title }}"?</p>
+    <form method="post" class="d-inline">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Sí, Borrar</button>
+        <a href="{% url 'service_list' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}
